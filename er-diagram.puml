@@ -1,0 +1,74 @@
+@startuml
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity hotels {
+  uuid : uuid
+  --
+  name : varchar(50)
+}
+
+entity reservations {
+  uuid : uuid
+  --
+  hotels_uuid : uuid <<FK>>
+  clients_uuid : uuid <<FK>>
+  rooms_uuid : uuid <<FK>>
+}
+
+entity rooms {
+  uuid : uuid
+  reservations_uuid : uuid <<FK>>
+  --
+  type : integer <<FK>>
+}
+
+entity clients {
+  uuid : uuid
+  --
+  full_name : varchar(50)
+  email : varchar(60) <<UNIQUE>>
+}
+
+entity bills {
+  uuid : uuid
+  clients_uuid : uuid <<FK>>
+  rooms_uuid : uuid <<FK>>
+  --
+  amount : integer
+}
+
+entity flights {
+  uuid : uuid
+  --
+  airlane_name
+  from_location
+  to_location
+  departure_time
+  arrival_time
+  duration
+  total_seats
+}
+
+entity tickets {
+  flights_uuid : uuid <<FK>>
+  clients_uuid : uuid <<FK>>
+  --
+  price : integer
+}
+
+hotels ||..|{ reservations
+clients ||..|{ reservations
+rooms ||..|{ reservations
+bills ||..|| clients
+bills ||..|| rooms
+
+clients ||..|{ tickets
+flights ||..|{ tickets
+
+@enduml
+
