@@ -1,0 +1,25 @@
+@startuml
+
+left to right direction
+
+:Admin: as admin
+:Customer: as customer
+
+package "Hotels Reservation" {
+  usecase "Search for hotels in preferred areas" as hr1
+  usecase "View availability of rooms according to dates" as hr2
+  usecase "View room types and prices" as hr3
+  usecase "Reserve rooms" as hr4
+  usecase "Make a payment for the rooms" as hr5
+  usecase "Update rooms availability according to dates" as hr6
+  usecase "Update room prices" as hr7
+}
+
+customer --> hr1
+customer --> hr2
+customer --> hr3
+customer --> hr4
+admin --> hr6
+admin --> hr7
+
+@enduml

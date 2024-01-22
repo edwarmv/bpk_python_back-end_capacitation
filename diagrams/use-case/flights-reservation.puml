@@ -1,0 +1,28 @@
+@startuml
+
+left to right direction
+
+:Admin: as admin
+:Customer: as customer
+
+package "Flights Reservation" {
+  usecase "Select flight" as fr1
+  usecase "Book flight" as fr2
+  usecase "Cancel booking" as fr3
+  usecase "Search flights" as fr4
+  usecase "View flights details" as fr5
+  usecase "Add flight" as fr6
+  usecase "Edit flight" as fr7
+  usecase "Cancel flight" as fr8
+}
+
+customer --> fr1
+customer --> fr2
+customer --> fr3
+customer --> fr4
+customer --> fr5
+admin --> fr6
+admin --> fr7
+admin --> fr8
+
+@enduml

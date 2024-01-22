@@ -1,0 +1,15 @@
+@startuml
+
+left to right direction
+
+:Customer: as customer
+
+package "Authentication" {
+  usecase "Create an account" as a1
+  usecase "Update an account" as a2
+}
+
+customer --> a1
+customer --> a2
+
+@enduml
