@@ -10,65 +10,80 @@ entity hotels {
   uuid : uuid
   --
   name : varchar(50)
+  country : varchar(30)
+  city : varchar(40)
+  address : varchar(60)
 }
 
-entity reservations {
+entity room_booking {
   uuid : uuid
   --
-  hotels_uuid : uuid <<FK>>
-  clients_uuid : uuid <<FK>>
-  rooms_uuid : uuid <<FK>>
+  from_date : date
+  to_date : date
+  canceled : boolean
+  created_at : timestamp
+  updated_at : timestamp
+  user_uuid : uuid <<FK>>
+  room_uuid : uuid <<FK>>
 }
 
 entity rooms {
   uuid : uuid
-  reservations_uuid : uuid <<FK>>
   --
-  type : integer <<FK>>
+  room_type : varchar(30)
+  price : real
+  number_guests : smallint
+  available : boolean
+  deleted : boolean
+  created_at : timestamp
+  updated_at : timestamp
+  hotel_uuid : uuid <<FK>>
 }
 
-entity clients {
+entity users {
   uuid : uuid
   --
   full_name : varchar(50)
   email : varchar(60) <<UNIQUE>>
-}
-
-entity bills {
-  uuid : uuid
-  clients_uuid : uuid <<FK>>
-  rooms_uuid : uuid <<FK>>
-  --
-  amount : integer
+  password : varchar(60)
+  role : varchar(20)
+  deleted : boolean
+  created_at : timestamp
+  updated_at : timestamp
 }
 
 entity flights {
   uuid : uuid
   --
-  airlane_name
-  from_location
-  to_location
-  departure_time
-  arrival_time
-  duration
-  total_seats
+  airlane_name : varchar(20)
+  from_location : varchar(60)
+  to_location : varchar(60)
+  departure_time : timestamp
+  arrival_time : timestamp
+  total_seats : integer
+  price : real
+  canceled : boolean
+  created_at : timestamp
+  updated_at : timestamp
 }
 
-entity tickets {
-  flights_uuid : uuid <<FK>>
-  clients_uuid : uuid <<FK>>
+entity flight_booking {
+  uuid : uuid
   --
-  price : integer
+  number_seats : smallint
+  canceled : boolean
+  created_at : timestamp
+  updated_at : timestamp
+  flight_uuid : uuid <<FK>>
+  user_uuid : uuid <<FK>>
 }
 
-hotels ||..|{ reservations
-clients ||..|{ reservations
-rooms ||..|{ reservations
-bills ||..|| clients
-bills ||..|| rooms
+hotels ||..|{ rooms
+users ||..|{ room_booking
+rooms ||..|{ room_booking
 
-clients ||..|{ tickets
-flights ||..|{ tickets
+users ||..|{ flight_booking
+flights ||..|{ flight_booking
 
 @enduml
 
