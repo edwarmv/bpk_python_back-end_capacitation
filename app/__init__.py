@@ -1,7 +1,7 @@
 from flask import Flask
 from sqlalchemy import text
 from config import Config
-from app.extensions import db
+from app.extensions import db, migrate
 
 from app.models.flight import Flight
 from app.models.flight_booking import FlightBooking
@@ -17,6 +17,7 @@ def create_app(config_class=Config):
 
     # Initialize Flask extensions here
     db.init_app(app)
+    migrate.init_app(app, db)
 
     with app.app_context():
         engine = db.get_engine()
@@ -24,8 +25,6 @@ def create_app(config_class=Config):
         with engine.connect() as conn:
             conn.execute(text('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'))
             conn.commit()
-
-        db.create_all()
 
     # Register blueprints here
 
