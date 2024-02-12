@@ -12,6 +12,9 @@ package "Hotels Reservation" {
   usecase "Reserve rooms" as hr4
   usecase "Update rooms availability according to dates" as hr5
   usecase "Update room prices" as hr6
+  usecase "Register room" as hr7
+  usecase "Update room's information" as hr8
+  usecase "Remove unavaliable rooms" as hr9
 }
 
 customer --> hr1
@@ -20,5 +23,8 @@ customer --> hr3
 customer --> hr4
 admin --> hr5
 admin --> hr6
+admin --> hr7
+admin --> hr8
+admin --> hr9
 
 @enduml
