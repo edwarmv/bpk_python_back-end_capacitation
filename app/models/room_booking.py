@@ -21,5 +21,5 @@ class RoomBooking(db.Model):
     user_uuid: Mapped[str] = mapped_column(ForeignKey("users.uuid"))
     room_uuid: Mapped[str] = mapped_column(ForeignKey("rooms.uuid"))
 
-    user: Mapped["User"] = relationship(back_populates="users")
-    room: Mapped["Room"] = relationship(back_populates="rooms")
+    user: Mapped["User"] = relationship(back_populates="rooms_booking")
+    room: Mapped["Room"] = relationship(back_populates="rooms_booking")
