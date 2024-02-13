@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from flask_migrate import Migrate
+from flask_restful import Api
 
 
 class Base(DeclarativeBase):
@@ -15,3 +16,5 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 
 migrate = Migrate()
+
+api = Api()
