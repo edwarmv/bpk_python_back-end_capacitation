@@ -33,6 +33,20 @@ class UserResource(Resource):
         self.userRepository.add(user)
         return "user created successfully", 201
 
-    def patch(self):
+    def patch(self, uuid: str):
+        if uuid:
+            if not is_valid_uuid(uuid):
+                return "the passed uuid is not a valid uuid", 400
+
         parser = reqparse.RequestParser()
-        parser.add_argument("/")
+        parser.add_argument("full_name", type=str)
+        parser.add_argument("password", type=str)
+        parser.add_argument("role", choices=["admin", "user"])
+        args = parser.parse_args()
+        self.userRepository.update(
+            uuid=uuid,
+            full_name=args["full_name"],
+            password=args["password"],
+            role=args["role"],
+        )
+        return "user was updated successfully"

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Literal, Optional
 
 from flask_restful import fields, marshal_with
 from sqlalchemy import select
@@ -33,6 +33,19 @@ class UserRepository:
         self.db.add(entity)
         self.db.commit()
 
-    def update(self, entity: User) -> None:
-        pass
-        # self.db.
+    def update(
+        self,
+        uuid: str,
+        full_name: Optional[str] = None,
+        password: Optional[str] = None,
+        role: Optional[Literal["admin", "user"]] = None,
+    ) -> None:
+        query = select(self.model).where(self.model.uuid == uuid)
+        user = self.db.execute(query).scalar_one()
+        if full_name:
+            user.full_name = full_name
+        if password:
+            user.password = password
+        if role:
+            user.role = role
+        self.db.commit()
