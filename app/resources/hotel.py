@@ -8,25 +8,6 @@ from app.helpers import is_valid_uuid
 class HotelResource(Resource):
     hotelRepository = HotelRepository()
 
-    def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument("name", type=str, required=True)
-        parser.add_argument("country", type=str, required=True)
-        parser.add_argument("city", type=str, required=True)
-        parser.add_argument("address", type=str, required=True)
-        args = parser.parse_args()
-
-        hotel = Hotel(
-            name=args["name"],
-            country=args["country"],
-            city=args["city"],
-            address=args["address"],
-        )
-
-        self.hotelRepository.add(hotel)
-
-        return "hotel created successfully", 201
-
     def patch(self, uuid: str):
         if not is_valid_uuid(uuid):
             return "the passed uuid is not a valid uuid", 400
@@ -64,3 +45,22 @@ class HotelsResource(Resource):
 
     def get(self):
         return self.hotelRepository.get_all()
+
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("name", type=str, required=True)
+        parser.add_argument("country", type=str, required=True)
+        parser.add_argument("city", type=str, required=True)
+        parser.add_argument("address", type=str, required=True)
+        args = parser.parse_args()
+
+        hotel = Hotel(
+            name=args["name"],
+            country=args["country"],
+            city=args["city"],
+            address=args["address"],
+        )
+
+        self.hotelRepository.add(hotel)
+
+        return "hotel created successfully", 201
