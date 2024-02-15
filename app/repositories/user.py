@@ -49,3 +49,9 @@ class UserRepository:
         if role:
             user.role = role
         self.db.commit()
+
+    def delete(self, uuid: str):
+        query = select(self.model).where(self.model.uuid == uuid)
+        user = self.db.execute(query).scalar_one()
+        user.deleted = True
+        self.db.commit()

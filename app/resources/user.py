@@ -50,3 +50,11 @@ class UserResource(Resource):
             role=args["role"],
         )
         return "user was updated successfully"
+
+    def delete(self, uuid: str):
+        if uuid:
+            if not is_valid_uuid(uuid):
+                return "the passed uuid is not a valid uuid", 400
+
+        self.userRepository.delete(uuid=uuid)
+        return "user was deleted successfully"
