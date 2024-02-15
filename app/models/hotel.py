@@ -19,3 +19,10 @@ class Hotel(db.Model):
     address: Mapped[str] = mapped_column(String(60))
 
     rooms: Mapped[List["Room"]] = relationship(back_populates="hotel")
+
+    def __init__(self, name: str, country: str, city: str, address: str) -> None:
+        super().__init__()
+        self.name = name
+        self.country = country
+        self.city = city
+        self.address = address

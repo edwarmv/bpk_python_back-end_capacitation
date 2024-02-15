@@ -9,17 +9,14 @@ class UserResource(Resource):
     userRepository = UserRepository()
 
     def get(self, uuid: str):
-        if uuid:
-            if not is_valid_uuid(uuid):
-                return "the passed uuid is not a valid uuid", 400
+        if not is_valid_uuid(uuid):
+            return "the passed uuid is not a valid uuid", 400
 
-            try:
-                user = self.userRepository.get_by_uuid(uuid)
-                return user
-            except:
-                return f"there is no an user with uuid: {uuid}", 404
-
-        return self.userRepository.get_all()
+        try:
+            user = self.userRepository.get_by_uuid(uuid)
+            return user
+        except:
+            return f"there is no an user with uuid: {uuid}", 404
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -58,3 +55,10 @@ class UserResource(Resource):
 
         self.userRepository.delete(uuid=uuid)
         return "user was deleted successfully"
+
+
+class UsersResource(Resource):
+    userRepository = UserRepository()
+
+    def get(self):
+        return self.userRepository.get_all()

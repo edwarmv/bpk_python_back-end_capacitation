@@ -55,3 +55,4 @@ class UserRepository:
         user = self.db.execute(query).scalar_one()
         user.deleted = True
         self.db.commit()
+
