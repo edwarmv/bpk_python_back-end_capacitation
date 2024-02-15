@@ -25,7 +25,28 @@ class HotelResource(Resource):
 
         self.hotelRepository.add(hotel)
 
-        return "hotel created successfully", 200
+        return "hotel created successfully", 201
+
+    def patch(self, uuid: str):
+        if not is_valid_uuid(uuid):
+            return "the passed uuid is not a valid uuid", 400
+
+        parser = reqparse.RequestParser()
+        parser.add_argument("name", type=str)
+        parser.add_argument("country", type=str)
+        parser.add_argument("city", type=str)
+        parser.add_argument("address", type=str)
+        args = parser.parse_args()
+
+        self.hotelRepository.update(
+            uuid,
+            name=args["name"],
+            country=args["country"],
+            city=args["city"],
+            address=args["address"],
+        )
+
+        return "user was updated successfully"
 
     def get(self, uuid: str):
         if not is_valid_uuid(uuid):

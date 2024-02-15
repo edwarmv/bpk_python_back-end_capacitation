@@ -1,3 +1,4 @@
+from typing import Optional
 from sqlalchemy import select
 from flask_restful import marshal_with, fields
 
@@ -19,6 +20,28 @@ class HotelRepository:
 
     def add(self, entity: Hotel):
         self.db.add(entity)
+        self.db.commit()
+
+    def update(
+        self,
+        uuid: str,
+        name: Optional[str] = None,
+        country: Optional[str] = None,
+        city: Optional[str] = None,
+        address: Optional[str] = None,
+    ):
+        query = select(self.model).where(self.model.uuid == uuid)
+        hotel = self.db.execute(query).scalar_one()
+
+        if name:
+            hotel.name = name
+        if country:
+            hotel.country = country
+        if city:
+            hotel.city = city
+        if address:
+            hotel.address = address
+
         self.db.commit()
 
     @marshal_with(hotel_fields)
