@@ -1,8 +1,16 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, fields, marshal_with, reqparse
 
 from app.repositories import HotelRepository
 from app.models import Hotel
 from app.helpers import is_valid_uuid
+
+hotel_fields = {
+    "uuid": fields.String,
+    "name": fields.String,
+    "country": fields.String,
+    "city": fields.String,
+    "address": fields.String,
+}
 
 
 class HotelResource(Resource):
@@ -29,6 +37,7 @@ class HotelResource(Resource):
 
         return "user was updated successfully"
 
+    @marshal_with(hotel_fields)
     def get(self, uuid: str):
         if not is_valid_uuid(uuid):
             return "the passed uuid is not a valid uuid", 400
@@ -43,6 +52,7 @@ class HotelResource(Resource):
 class HotelsResource(Resource):
     hotelRepository = HotelRepository()
 
+    @marshal_with(hotel_fields)
     def get(self):
         return self.hotelRepository.get_all()
 
