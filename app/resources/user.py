@@ -1,13 +1,21 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, fields, marshal_with, reqparse
 
 from app.repositories import UserRepository
 from app.models import User
 from app.helpers import is_valid_uuid
 
+user_fields = {
+    "uuid": fields.String,
+    "full_name": fields.String,
+    "role": fields.String,
+    "deleted": fields.Boolean,
+}
+
 
 class UserResource(Resource):
     userRepository = UserRepository()
 
+    @marshal_with(user_fields)
     def get(self, uuid: str):
         if not is_valid_uuid(uuid):
             return "the passed uuid is not a valid uuid", 400
@@ -48,6 +56,7 @@ class UserResource(Resource):
 class UsersResource(Resource):
     userRepository = UserRepository()
 
+    @marshal_with(user_fields)
     def get(self):
         return self.userRepository.get_all()
 
