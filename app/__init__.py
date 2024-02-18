@@ -3,7 +3,14 @@ from sqlalchemy import text
 from config import Config
 
 from app.extensions import db, migrate, api
-from app.resources import UserResource, HotelResource, HotelsResource, UsersResource
+from app.resources import (
+    UserResource,
+    HotelResource,
+    HotelsResource,
+    UsersResource,
+    RoomResource,
+    RoomsResource,
+)
 
 
 def create_app(config_class=Config):
@@ -17,6 +24,8 @@ def create_app(config_class=Config):
     api.add_resource(UserResource, "/user/<string:uuid>")
     api.add_resource(HotelsResource, "/hotel")
     api.add_resource(HotelResource, "/hotel/<string:uuid>")
+    api.add_resource(RoomsResource, "/room")
+    api.add_resource(RoomResource, "/room/<string:uuid>")
     api.init_app(app)
 
     with app.app_context():

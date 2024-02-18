@@ -18,8 +18,23 @@ class Room(db.Model):
     price: Mapped[float] = mapped_column(Float)
     number_guests: Mapped[int] = mapped_column(SmallInteger)
     available: Mapped[bool] = mapped_column(Boolean)
-    deleted: Mapped[bool] = mapped_column(Boolean)
-    hotel_uui: Mapped[str] = mapped_column(ForeignKey("hotels.uuid"))
+    deleted: Mapped[bool] = mapped_column(Boolean, default=False)
+    hotel_uuid: Mapped[str] = mapped_column(ForeignKey("hotels.uuid"))
 
     hotel: Mapped["Hotel"] = relationship(back_populates="rooms")
     rooms_booking: Mapped[List["RoomBooking"]] = relationship(back_populates="room")
+
+    def __init__(
+        self,
+        room_type: str,
+        price: float,
+        number_guests: int,
+        available: bool,
+        hotel_uuid: str,
+    ) -> None:
+        super().__init__()
+        self.room_type = room_type
+        self.price = price
+        self.number_guests = number_guests
+        self.available = available
+        self.hotel_uuid = hotel_uuid
