@@ -10,6 +10,8 @@ from app.resources import (
     UsersResource,
     RoomResource,
     RoomsResource,
+    RoomBookingResource,
+    RoomsBookingResource,
 )
 
 
@@ -26,6 +28,8 @@ def create_app(config_class=Config):
     api.add_resource(HotelResource, "/hotel/<string:uuid>")
     api.add_resource(RoomsResource, "/room")
     api.add_resource(RoomResource, "/room/<string:uuid>")
+    api.add_resource(RoomsBookingResource, "/room-booking")
+    api.add_resource(RoomBookingResource, "/room-booking/<string:uuid>")
     api.init_app(app)
 
     with app.app_context():

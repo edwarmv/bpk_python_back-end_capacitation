@@ -1,5 +1,7 @@
 from typing import Optional
+
 from sqlalchemy import select
+
 from app.models import Room
 from app.extensions import db
 
