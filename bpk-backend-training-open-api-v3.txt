@@ -1,0 +1,788 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "bpk-backend-training",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {
+      "name": "EdwarKenedy",
+      "email": "edwar_kenedy@hotmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5000/",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/hotel/": {
+      "get": {
+        "summary": "get all",
+        "description": "",
+        "operationId": "055723a9-9cb2-4c68-af25-2f968d7e8503",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {}
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "add",
+        "description": "",
+        "operationId": "62f3ccbc-4fec-4456-a3fb-f06a3833573f",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "example": "New country"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "New Road"
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "my city"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "oh no my address?"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "city": {
+                          "type": "string",
+                          "example": "Missing required parameter in the JSON body or the post body or the query string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Date": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 19 Feb 2024 03:44:50 GMT"
+                }
+              },
+              "Content-Type": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Connection": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              },
+              "Content-Length": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "126"
+                }
+              },
+              "Server": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/hotel/{uuid}/": {
+      "get": {
+        "summary": "get by uuid",
+        "description": "",
+        "operationId": "024608cc-4937-4e7c-9ee9-a1da22d7a4c2",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "3c14f565-72ee-435c-911f-5eed3f9a7aeb",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {}
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      },
+      "patch": {
+        "summary": "update",
+        "description": "",
+        "operationId": "bd84f631-1aef-4bba-9f9c-a5cc660a3989",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "3c14f565-72ee-435c-911f-5eed3f9a7aeb",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "New Road"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      }
+    },
+    "/user/": {
+      "get": {
+        "summary": "get all",
+        "description": "",
+        "operationId": "3e915f77-3a95-434c-9861-974fbc8fecd8",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {}
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "add",
+        "description": "",
+        "operationId": "6c75b682-869b-4bf5-82ed-433e028e6e82",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "example": "qwerty"
+                  },
+                  "role": {
+                    "type": "string",
+                    "example": "admin"
+                  },
+                  "full_name": {
+                    "type": "string",
+                    "example": "eddy"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "405": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "The method is not allowed for the requested URL."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Server": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 19 Feb 2024 03:41:41 GMT"
+                }
+              },
+              "Content-Type": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Connection": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              },
+              "Allow": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "OPTIONS, GET, PATCH, HEAD, DELETE"
+                }
+              },
+              "Content-Length": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "70"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/user/{uuid}/": {
+      "get": {
+        "summary": "get by uuid",
+        "description": "",
+        "operationId": "e080e660-f220-4cbf-8f3f-b159d00b4a26",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "1670b5f6-931d-4d44-a08b-4a17dd3d86d9",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {}
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      },
+      "patch": {
+        "summary": "update",
+        "description": "",
+        "operationId": "93d448af-270b-4791-b7a6-ba95a59ca760",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "1670b5f6-931d-4d44-a08b-4a17dd3d86d9",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "example": "qwerty"
+                  },
+                  "full_name": {
+                    "type": "string",
+                    "example": "eddy"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      }
+    },
+    "/room/": {
+      "get": {
+        "summary": "add",
+        "description": "",
+        "operationId": "fa4b344e-2888-4d24-b78b-e301a36da6dd",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hotel_uuid": {
+                    "type": "string",
+                    "example": "1b2dc462-6469-482a-84c1-6fa081f943e6"
+                  },
+                  "room_type": {
+                    "type": "string",
+                    "example": "cheap"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "number_guests": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "available": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      }
+    },
+    "/room/{uuid}/": {
+      "get": {
+        "summary": "update",
+        "description": "",
+        "operationId": "2eb72a76-3e2c-4bdb-aac4-6cd654f96dc7",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "1f8c4397-b7f0-4d91-9e1a-9b686b31d740",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hotel_uuid": {
+                    "type": "string",
+                    "example": "1b2dc462-6469-482a-84c1-6fa081f943e6"
+                  },
+                  "room_type": {
+                    "type": "string",
+                    "example": "cheap"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "number_guests": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "available": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      }
+    },
+    "/room-booking/": {
+      "get": {
+        "summary": "add",
+        "description": "",
+        "operationId": "819a13ab-4727-4d0d-9714-6cd1dda932e6",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to_date": {
+                    "type": "string",
+                    "example": "2024-01-10"
+                  },
+                  "room_uuid": {
+                    "type": "string",
+                    "example": "1f8c4397-b7f0-4d91-9e1a-9b686b31d740"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "example": "2024-01-01"
+                  },
+                  "user_uuid": {
+                    "type": "string",
+                    "example": "1670b5f6-931d-4d44-a08b-4a17dd3d86d9"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": []
+      }
+    },
+    "/room-booking/{uuid}/": {
+      "get": {
+        "summary": "update",
+        "description": "",
+        "operationId": "18fec55e-32ba-4c98-bead-3ea985228437",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json; charset=utf-8",
+              "description": ""
+            }
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "3cb902fb-1d15-481e-bc27-c2cd73de24bf",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to_date": {
+                    "type": "string",
+                    "example": "2024-01-10"
+                  },
+                  "room_uuid": {
+                    "type": "string",
+                    "example": "1f8c4397-b7f0-4d91-9e1a-9b686b31d740"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "example": "2024-01-01"
+                  },
+                  "user_uuid": {
+                    "type": "string",
+                    "example": "1670b5f6-931d-4d44-a08b-4a17dd3d86d9"
+                  },
+                  "canceled": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "example": "3cb902fb-1d15-481e-bc27-c2cd73de24bf"
+                    },
+                    "from_date": {
+                      "type": "string",
+                      "example": "2024-01-01"
+                    },
+                    "to_date": {
+                      "type": "string",
+                      "example": "2024-01-10"
+                    },
+                    "canceled": {
+                      "type": "boolean"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "uuid": {
+                          "type": "string",
+                          "example": "1670b5f6-931d-4d44-a08b-4a17dd3d86d9"
+                        },
+                        "full_name": {
+                          "type": "string",
+                          "example": "eddy"
+                        }
+                      }
+                    },
+                    "room": {
+                      "type": "object",
+                      "properties": {
+                        "uuid": {
+                          "type": "string",
+                          "example": "1f8c4397-b7f0-4d91-9e1a-9b686b31d740"
+                        },
+                        "room_type": {
+                          "type": "string",
+                          "example": "luxury"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "number_guests": {
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 2
+                        },
+                        "hotel": {
+                          "type": "object",
+                          "properties": {
+                            "uuid": {
+                              "type": "string",
+                              "example": "3c14f565-72ee-435c-911f-5eed3f9a7aeb"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "New Road"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Date": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 19 Feb 2024 03:50:03 GMT"
+                }
+              },
+              "Content-Type": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Connection": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              },
+              "Content-Length": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "520"
+                }
+              },
+              "Server": {
+                "description": "",
+                "schema": {
+                  "type": "string",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {}
+}
